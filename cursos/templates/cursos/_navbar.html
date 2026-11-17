@@ -1,0 +1,19 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary rounded mb-4 px-3">
+    <a class="navbar-brand" href="{% url 'web_lista_cursos' %}">Academia</a>
+    <div class="navbar-nav me-auto">
+        <a class="nav-link" href="{% url 'web_lista_cursos' %}">Cursos</a>
+        <a class="nav-link" href="{% url 'web_lista_profesores' %}">Profesores</a>
+        <a class="nav-link" href="{% url 'web_lista_estudiantes' %}">Estudiantes</a>
+    </div>
+    <div class="d-flex align-items-center">
+        {% if user.is_authenticated %}
+            <span class="text-white me-3">Hola, <strong>{{ user.username }}</strong></span>
+            <form action="{% url 'logout' %}" method="post" class="d-inline">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-outline-light btn-sm">Cerrar Sesión</button>
+            </form>
+        {% else %}
+            <a href="{% url 'login' %}" class="btn btn-outline-light btn-sm">Iniciar Sesión</a>
+        {% endif %}
+    </div>
+</nav>
